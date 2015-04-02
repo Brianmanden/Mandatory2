@@ -15,7 +15,7 @@ gulp.task("nodemon", function(){
 			startBrowserSync();
 		})
 		.on("restart", function(){
-			console.log("nodemon restarted");
+			console.log("nodemon REstarted");
 		})
 })
 

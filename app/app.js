@@ -13,6 +13,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 
+/* Setup view engine */
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+
+
 /* Routes */
 // Index page
 app.get('/', routes.index);
@@ -26,7 +32,7 @@ app.get('/products', routes.productGetAll);
 
 /* CRUD for a product*/
 // Create a product
-app.post('/product', routes.productCreate);
+app.post('/product/:id', routes.productCreate);
 
 // Get a product by id
 app.get('/product/:id', routes.productRead);
@@ -35,7 +41,7 @@ app.get('/product/:id', routes.productRead);
 app.put('/product/:id', routes.productUpdate);
 
 // Delete a product
-app.get('/product/:id', routes.productDelete);
+app.delete('/product/:id', routes.productDelete);
 
 
 
@@ -52,6 +58,6 @@ db.once('open', startServer)
 function startServer(){
 	var server = app.listen(3000, function(){
 		var port = server.address().port;
-		console.log('Listening on port ' + port);
+		console.log('Starting node server. Listening on port ' + port);
 	})
 }

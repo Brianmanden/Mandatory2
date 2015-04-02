@@ -1,0 +1,20 @@
+<html>
+<body>
+	<h1><%= title %></h1>
+
+	<a href="#">Create</a>
+	<a href="/products">Read</a>
+	<a href="#">Update</a>
+	<a href="#">Delete</a>
+
+
+	<table>
+		<form method="DELETE" action="/dumpParams">
+			<tr><td>id:</td><td><input type="text" name="id"></td></tr>
+			<tr><td>Username:</td><td><input type="text" name="user"></td></tr>
+			<tr><td>Password:</td><td><input type="password" name="pass"></td></tr>
+			<tr><td></td><td><input type="submit" name="submit" value="Login"></td></tr>
+		</form>
+	</table>
+</body>
+</html>
