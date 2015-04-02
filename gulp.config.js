@@ -4,7 +4,7 @@ function gulpConfig() {
 		nodeApp 	= nodeServer + 'app.js';
 
 	var config = {
-		browserSyncFiles: "value", "value", [client + '**/*', nodeApp, nodeServer + 'views/**/*', nodeServer + 'routes/**/*.js'],
+		browserSyncFiles: [client + '**/*', nodeApp, nodeServer + 'views/**/*', nodeServer + 'routes/**/*.js'],
 		browserSyncPort: 4000,
 		client: client,
 		nodeApp: nodeApp,
