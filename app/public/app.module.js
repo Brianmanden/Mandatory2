@@ -10,19 +10,19 @@
 		.config(
 			function($routeProvider) {
 				$routeProvider
-				.when("/", {
-					templateUrl: "./products/products.html",
-					controller: "productsController"
-				})
-				.when("/product/:id", {
-					templateUrl: "./products/product.html",
-					controller: "productController"
-				})
-				.when("/checkout", {
-					templateUrl: "./views/checkout.html",
-					controller: "cartController"
-				})
-				.otherwise({ redirectTo: "/	"});
+					.when("/products", {
+						templateUrl: "./views/showProducts.html",
+						controller: "tester"
+					})
+					.when("/product/:id", {
+						templateUrl: "./products/product.html",
+						controller: "productController"
+					})
+					.when("/", {
+						templateUrl: "./products.html",
+						controller: "productsController"
+					})
+					.otherwise({ redirectTo: "/	"});
 			}
 		)
 		.run(function($rootScope){
@@ -33,6 +33,6 @@
 		});
 
 		function MainController($rootScope, $http){
-		}
+		};
 
 })();

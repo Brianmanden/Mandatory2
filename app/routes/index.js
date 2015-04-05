@@ -1,34 +1,34 @@
 var ProductsModel = require('../data/products');
 
-
-
 exports.index = function(req, res){
   // render a view: /views/index.html
   // res.render('index'); 
-
-  // render a text
-  // res.send("index route")
-
-  res.render('index.ejs', { title: 'The index page!' });
+  res.render('./index.ejs', { title: '123' });
 };
 
 exports.productGetAll = function(req, res, next){
+  console.log('productGetAll');
   ProductsModel.find(function(err, data){
     if(err){
       console.error;
     }
-    res.render('showProducts.ejs', { title: 'show products', products: data });
+    //res.render('./showProds.ejs', { title: 'Show products',  products: data });
+    //res.render('../public/products/products.html', { title: 'Show products',  products: data });
+    //res.render('../public/index.html', { title: 'Show products',  products: data });
+    //res.json(data);
+    //res.render('index', { products: data });
+    res.render("showProducts");
   });
 }
 
 exports.productCreate = function(req, res, next){
-  res.render('CRUDProd.ejs', { httpVerb: 'POST',  title: 'Create a new product', submitTxt: 'Create' });
-  //res.send("POST " + req.body + " - " + req.params.id);
+  //res.render('./CRUDProd.ejs', { httpVerb: 'POST',  title: 'Create a new product', submitTxt: 'Create' });
+  res.send("productCreate ");
 }
 
 exports.productRead = function(req, res, next){
-  //res.send('productRead');
-  res.render('CRUDProd.ejs', { httpVerb: 'GET',  title: 'Create a new product', submitTxt: 'Create' });
+  console.log('productRead');
+  //res.render('./CRUDProd.ejs', { httpVerb: 'GET',  title: 'Create a new product', submitTxt: 'Create' });
   //res.json({type: "Read", id: req.params.id});
 }
 

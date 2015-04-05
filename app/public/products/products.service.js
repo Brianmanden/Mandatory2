@@ -6,21 +6,21 @@
 		var categoriesSelected = new Array();
 
 		var getProducts = function(response){
-			return $http.get("./app/data/products.json")
+			return $http.get("../../data/products.js")
 					.then(function(response){
-							return response.data;
-						}, getError)
+						return response.data;
+					}, getError)
 		};
 
 		var getProduct = function(prodId){
-			return $http.get("./app/data/products.json")
+			return $http.get("../../data/products.js")
 					.then(function(response){
 						return findProductInArray(response.data, parseInt(prodId));
 					})
 		}
 
 		var getCategories = function(response){
-			return $http.get("./app/data/categories.json")
+			return $http.get("../../../data/categories.json")
 					.then(function(response){
 						return response.data;
 					}, getError)

@@ -1,21 +1,40 @@
 /* Init */
 var bodyParser		= require('body-parser'),
 	dbname 			= 'angular_mongodb',
+	dbpassword		= 'Conky123',
+	dbserver		= 'ds039301.mongolab.com:39301',
+	dbuser			= 'eaatest',
 	ejs 			= require('ejs'),
 	express 	 	= require('express'),
 	mongoose		= require('mongoose'),
+	path			= require('path'),
 	routes 			= require('./routes');
+
+
 
 /* Express setup */
 var app 			= express();
+app.engine("html", ejs.renderFile);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'html');
+//app.set('view engine', 'html');
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
 
 
 
-/* Setup view engine */
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+/* Mongoose DB connection */
+// connection localhost
+mongoose.connect('mongodb://localhost/' + dbname);
+
+// connection mongolab.com
+//mongoose.connect('mongodb://' + dbuser + ':' + dbpassword + '@' + dbserver + '/' +dbname);
+
+var db = mongoose.connection;
+// DB events
+db.on('error', console.error);
+db.once('open', startServer)
 
 
 
@@ -23,12 +42,8 @@ app.set('view engine', 'ejs');
 // Index page
 app.get('/', routes.index);
 
-
-
 /* Get all products */
 app.get('/products', routes.productGetAll);
-
-
 
 /* CRUD for a product*/
 // Create a product
@@ -44,14 +59,6 @@ app.put('/product/:id', routes.productUpdate);
 app.delete('/product/:id', routes.productDelete);
 
 
-
-/* Mongoose */
-// DB connection
-mongoose.connect('mongodb://localhost/' + dbname);
-var db = mongoose.connection;
-// DB events
-db.on('error', console.error);
-db.once('open', startServer)
 
 /* Nodeserver */
 // Start server
