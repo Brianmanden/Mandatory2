@@ -20,6 +20,6 @@
 	}
 
 	angular
-	.module("Main.product", [])
-	.controller("productController", productController);
+	.module("main.Product", [])
+	.controller("ProductController", productController);
 })();

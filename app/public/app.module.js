@@ -3,23 +3,26 @@
 
 	angular
 		.module(
-			"Main",
-			["ngRoute", "Main.cart", "Main.products", "Main.product"]
+			"main",
+			["ngRoute", "main.Cart", "main.Products", "main.Product"]
 		)
 		.controller("MainController", MainController)
 		.config(
 			function($routeProvider) {
 				$routeProvider
 					.when("/products", {
-						templateUrl: "./views/showProducts.html",
-						controller: "tester"
+						templateUrl: "./products/products.html",
+						controller: "ProductsController"
 					})
 					.when("/product/:id", {
 						templateUrl: "./products/product.html",
 						controller: "productController"
 					})
+					.when("/test", {
+						templateUrl: "./products/test.html"
+					})
 					.when("/", {
-						templateUrl: "./products.html",
+						templateUrl: "./products/products.html",
 						controller: "productsController"
 					})
 					.otherwise({ redirectTo: "/	"});

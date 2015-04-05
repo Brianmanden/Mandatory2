@@ -25,7 +25,7 @@
 	}
 
 	angular
-		.module("Main.cart", [])
-		.controller("cartController", cartController);
+		.module("main.Cart", [])
+		.controller("CartController", cartController);
 
 })();

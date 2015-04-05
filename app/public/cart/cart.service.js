@@ -77,7 +77,7 @@
 	}
 
 	angular
-		.module("Main.cart")
+		.module("main.Cart")
 		.factory('cartService', cartService);
 
 })();

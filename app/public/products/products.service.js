@@ -48,6 +48,7 @@
 			var data;
 			return $http.get("/products")
 						.then(function(response){
+							console.log("products.service");
 							setProducts(response.data);
 							return response.data;
 						}, getError)
@@ -77,7 +78,7 @@
 	}
 
 	angular
-		.module("Main.products")
+		.module("main.Products", [])
 		.factory('productsService', productsService);
 
 })();

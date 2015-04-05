@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	function productsController($scope, productsService, cartService){
+	function ProductsController($scope, productsService, cartService){
 
 		var modelProducts = function(data){
 			$scope.products = data;
@@ -43,7 +43,7 @@
 	};
 
 	angular.
-		module("Main.products", [])
-		.controller("productsController", productsController);
+		module("main.Products", [])
+		.controller("ProductsController", ProductsController);
 
 })();

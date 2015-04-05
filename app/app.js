@@ -49,7 +49,7 @@ app.get('/products', routes.products);
 // Create a product
 app.post('/product/:id', routes.productCreate);
 
-// Get a product by id
+// Get (Read) a product by id
 app.get('/product/:id', routes.productRead);
 
 // Update a product
