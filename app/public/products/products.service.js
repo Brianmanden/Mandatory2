@@ -3,24 +3,30 @@
 
 	var productsService = function($http){
 
-		var categoriesSelected = new Array();
+		var categoriesSelected 	=	[],
+			products			=	[];
 
-		var getProducts = function(response){
-			return $http.get("../../data/products.js")
-					.then(function(response){
-						return response.data;
-					}, getError)
-		};
+		var categoryChange = function(category){
+			var i = categoriesSelected.indexOf(category);
+            if (i > -1) {
+                categoriesSelected.splice(i, 1);
+            } 
+            else {
+                categoriesSelected.push(category);
+            }
+        }
 
-		var getProduct = function(prodId){
-			return $http.get("../../data/products.js")
-					.then(function(response){
-						return findProductInArray(response.data, parseInt(prodId));
-					})
+		var findProductInArray = function(data, prodId){
+			return data.filter(function(elem){
+				if(elem.prodId === prodId){
+					return elem;
+				}
+			});
 		}
 
 		var getCategories = function(response){
-			return $http.get("../../../data/categories.json")
+			// return $http.get("/categories")
+			return $http.get("../data/categories.json")
 					.then(function(response){
 						return response.data;
 					}, getError)
@@ -29,6 +35,23 @@
 		var getCategoriesSelected = function(){
       		return categoriesSelected;
       	}
+
+		var getError = function(reason){
+			console.log(reason);
+		}
+
+		var getProduct = function(id){
+			return findProductInArray(products, id);
+		}
+		
+		var getProducts = function(response){
+			var data;
+			return $http.get("/products")
+						.then(function(response){
+							setProducts(response.data);
+							return response.data;
+						}, getError)
+		};
 
 		var productFilter = function(product){
 			if(categoriesSelected.length > 0){
@@ -39,27 +62,9 @@
 			return product;
 		}
 
-		var getError = function(reason){
-			console.log(reason);
+		var setProducts = function(data){
+			products = data;
 		}
-
-		var findProductInArray = function(data, prodId){
-			return data.filter(function(elem){
-				if(elem.prodId === prodId){
-					return elem;
-				}
-			});
-		}
-		
-		var categoryChange = function(category){
-			var i = categoriesSelected.indexOf(category);
-            if (i > -1) {
-                categoriesSelected.splice(i, 1);
-            } 
-            else {
-                categoriesSelected.push(category);
-            }
-        }
 
 		return{
 			getProducts: getProducts,

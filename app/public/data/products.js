@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-// Schema
-var schema = {
+var productsSchema = new Schema({
 	prodId		: 	Number, 
 	prodTitle	: 	String,
 	prodDesc	: 	String, 
@@ -10,9 +10,8 @@ var schema = {
 	prodPrice	: 	Number,
 	prodImg		: 	String,
 	category	: 	String
-}
+});
 
+var ProductsModel = mongoose.model("Products", productsSchema);
 
-var Products = mongoose.model("Products", schema);
-
-module.exports = Products;
+module.exports = ProductsModel;

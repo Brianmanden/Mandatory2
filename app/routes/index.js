@@ -1,23 +1,23 @@
-var ProductsModel = require('../data/products');
-
 exports.index = function(req, res){
   // render a view: /views/index.html
   // res.render('index'); 
-  res.render('./index.ejs', { title: '123' });
+  res.send(200);
 };
 
-exports.productGetAll = function(req, res, next){
-  console.log('productGetAll');
+/*
+exports.categories = function(){
+
+}
+*/
+
+exports.products = function(req, res, next){
+  var ProductsModel = require('../public/data/products');
+  console.log('products');
   ProductsModel.find(function(err, data){
     if(err){
       console.error;
     }
-    //res.render('./showProds.ejs', { title: 'Show products',  products: data });
-    //res.render('../public/products/products.html', { title: 'Show products',  products: data });
-    //res.render('../public/index.html', { title: 'Show products',  products: data });
-    //res.json(data);
-    //res.render('index', { products: data });
-    res.render("showProducts");
+    res.json(data);
   });
 }
 

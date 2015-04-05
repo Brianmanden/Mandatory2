@@ -43,7 +43,7 @@ db.once('open', startServer)
 app.get('/', routes.index);
 
 /* Get all products */
-app.get('/products', routes.productGetAll);
+app.get('/products', routes.products);
 
 /* CRUD for a product*/
 // Create a product
