@@ -1,6 +1,4 @@
 <div>
-	{{products}}
-	{{1+2}}
 	<h1>Produkter</h1>
 	<!-- SEARCH -->
 	<div class="container-fluid">
@@ -30,7 +28,7 @@
 			<h4>{{ product.prodTitle }}</h4>
 		</a>
 		<a ng-href="#/product/{{product.prodId}}">
-			<img ng-src="{{product.prodImg}}" height="125px" />
+			<img ng-src="../img/{{product.prodImg}}" height="125px" />
 		</a>
 		<p><b>Styrke:</b>{{product.prodPct}} %</p>
 		<p><b>Vol.:</b> {{product.prodVol}} cl.</b></p>

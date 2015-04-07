@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	var productsService = function($http){
+	var ProductsService = function($http, CartService){
 
 		var categoriesSelected 	=	[],
 			products			=	[];
@@ -41,14 +41,16 @@
 		}
 
 		var getProduct = function(id){
-			return findProductInArray(products, id);
+			return $http.get("/products")
+					.then(function(response){
+						return findProductInArray(response.data, parseInt(id));
+					})
 		}
-		
+
 		var getProducts = function(response){
 			var data;
 			return $http.get("/products")
 						.then(function(response){
-							console.log("products.service");
 							setProducts(response.data);
 							return response.data;
 						}, getError)
@@ -68,17 +70,17 @@
 		}
 
 		return{
-			getProducts: getProducts,
-			getProduct: getProduct,
-			getCategories: getCategories,
-			getCategoriesSelected: getCategoriesSelected,
-			productFilter: productFilter,
-			categoryChange: categoryChange
+			getProducts: 			getProducts,
+			getProduct: 			getProduct,
+			getCategories: 			getCategories,
+			getCategoriesSelected: 	getCategoriesSelected,
+			productFilter: 			productFilter,
+			categoryChange: 		categoryChange
 		}
 	}
 
 	angular
-		.module("main.Products", [])
-		.factory('productsService', productsService);
+		.module('Main.Products')
+		.factory('ProductsService', ProductsService);
 
 })();

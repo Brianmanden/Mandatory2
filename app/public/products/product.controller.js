@@ -1,6 +1,6 @@
 (function(){
 
-	function productController($scope, productsService, cartService, $routeParams){
+	function ProductController($scope, ProductsService, CartService, $routeParams){
 
 		var modelProduct = function(productArray){
 			$scope.product = productArray[0];
@@ -8,18 +8,18 @@
 
 
 
-		productsService.getProduct($routeParams.id)
+		ProductsService.getProduct($routeParams.id)
 			.then(modelProduct);
 
 
 
 		$scope.addToCart = function(product, amount){
-			cartService.addToCart(product, amount);
+			CartService.addToCart(product, amount);
 		}
 
 	}
 
 	angular
-	.module("main.Product", [])
-	.controller("ProductController", productController);
+	.module("Main.Product", [])
+	.controller("ProductController", ProductController);
 })();

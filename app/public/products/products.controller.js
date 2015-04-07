@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	function ProductsController($scope, productsService, cartService){
+	var ProductsController = function($scope, ProductsService, CartService){
 
 		var modelProducts = function(data){
 			$scope.products = data;
@@ -10,31 +10,26 @@
 			$scope.categories = data;
 		}
 		var updateCategoriesSelected = function(){
-			$scope.categoriesSelected = productsService.getCategoriesSelected();
+			$scope.categoriesSelected = ProductsService.getCategoriesSelected();
 		}
 
 
 
-		productsService.getProducts()
-			.then(modelProducts);
-		productsService.getCategories()
-			.then(modelCategories);
-
-
-
-		var updateCategoriesSelected = function(){
-			$scope.categoriesSelected = productsService.getCategoriesSelected();
+		$scope.ProductFilter = function(Product){
+			return ProductsService.ProductFilter(Product);
 		}
 
-
-
-		$scope.productFilter = function(product){
-			return productsService.productFilter(product);
-		}
 		$scope.categoryChange = function(category){
-			productsService.categoryChange(category);
+			ProductsService.categoryChange(category);
 			updateCategoriesSelected();
 		}
+
+
+
+		ProductsService.getProducts()
+			.then(modelProducts);
+		ProductsService.getCategories()
+			.then(modelCategories);
 
 
 
@@ -42,8 +37,10 @@
 
 	};
 
-	angular.
-		module("main.Products", [])
+
+
+	angular
+		.module("Main.Products", [])
 		.controller("ProductsController", ProductsController);
 
 })();

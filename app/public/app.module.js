@@ -3,10 +3,9 @@
 
 	angular
 		.module(
-			"main",
-			["ngRoute", "main.Cart", "main.Products", "main.Product"]
+			"Main",
+			["ngRoute", "Main.Products", "Main.Product" , "Main.Cart"]
 		)
-		.controller("MainController", MainController)
 		.config(
 			function($routeProvider) {
 				$routeProvider
@@ -16,14 +15,15 @@
 					})
 					.when("/product/:id", {
 						templateUrl: "./products/product.html",
-						controller: "productController"
+						controller: "ProductController"
 					})
-					.when("/test", {
-						templateUrl: "./products/test.html"
+					.when("/checkout", {
+						templateUrl: "./checkout/checkout.html",
+						controller: "CartController"
 					})
 					.when("/", {
 						templateUrl: "./products/products.html",
-						controller: "productsController"
+						controller: "ProductsController"
 					})
 					.otherwise({ redirectTo: "/	"});
 			}
@@ -36,6 +36,6 @@
 		});
 
 		function MainController($rootScope, $http){
-		};
+		}
 
 })();

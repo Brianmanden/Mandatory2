@@ -1,31 +1,31 @@
 (function(){
 	"use strict";
 
-	function cartController($rootScope, $scope, cartService){
+	function CartController($rootScope, $scope, CartService){
 
 		$scope.delProd = function(item){
-			cartService.delProd(item);
+			CartService.delProd(item);
 		}
 
 		$scope.moreProd = function(item){
-			cartService.moreProd(item);
+			CartService.moreProd(item);
 		}
 
 		$scope.lessProd = function(item){
-			cartService.lessProd(item);
+			CartService.lessProd(item);
 		}
 
 		$scope.logOrder = function(){
 			var orderObj = {};
 			orderObj["kunde"] = this.kunde;
-			orderObj["kurv"] = $rootScope.cart;
-			cartService.logOrder(orderObj);
+			orderObj["kurv"] = $rootScope.Cart;
+			CartService.logOrder(orderObj);
 		}
-
+		
 	}
 
 	angular
-		.module("main.Cart", [])
-		.controller("CartController", cartController);
+		.module("Main.Cart", [])
+		.controller("CartController", CartController);
 
 })();

@@ -1,7 +1,21 @@
 (function(){
 	"use strict";
 
-	var cartService = function($rootScope){
+	var CartService = function($rootScope){
+
+		var addToCart = function(product, amount){		
+			if($rootScope.cart[product.prodId]){
+				$rootScope.cart[product.prodId]["amount"] += amount;
+			}
+			else{
+				$rootScope.cart[product.prodId] = {
+					prodId: product.prodId,
+					product: product,
+					amount: amount
+				};
+			}
+			updateCartStatus();
+		}
 
 		var delProd = function(item){
 			delete $rootScope.cart[item.prodId];
@@ -9,6 +23,7 @@
 		}
 
 		var lessProd = function(item){
+			console.log("lessProd");
 			if($rootScope.cart[item.prodId]["amount"] > 1){
 				$rootScope.cart[item.prodId]["amount"] -= 1;
 				updateCartStatus();
@@ -17,21 +32,6 @@
 
 		var moreProd = function(item){
 			$rootScope.cart[item.prodId]["amount"] += 1;
-			updateCartStatus();
-		}
-
-		var addToCart = function(product, amount){
-			if($rootScope.cart[product.prodId]){
-				$rootScope.cart[product.prodId]["amount"] += amount;
-			}
-			else
-			{
-				$rootScope.cart[product.prodId] = {
-					prodId: product.prodId,
-					product: product,
-					amount: amount
-				};
-			}
 			updateCartStatus();
 		}
 
@@ -63,7 +63,8 @@
 		}
 
 		var logOrder = function(orderObj){
-			console.log(orderObj);
+			console.log("tester");
+			//console.log(orderObj);
 		}
 
 		return{
@@ -77,7 +78,7 @@
 	}
 
 	angular
-		.module("main.Cart")
-		.factory('cartService', cartService);
+		.module("Main.Cart")
+		.factory('CartService', CartService);
 
 })();
