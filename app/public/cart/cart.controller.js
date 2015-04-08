@@ -15,11 +15,11 @@
 			CartService.lessProd(item);
 		}
 
-		$scope.logOrder = function(){
+		$scope.saveOrder = function(){
 			var orderObj = {};
 			orderObj["kunde"] = this.kunde;
-			orderObj["kurv"] = $rootScope.Cart;
-			CartService.logOrder(orderObj);
+			orderObj["kurv"] = $rootScope.cart;
+			CartService.saveOrder(orderObj);
 		}
 		
 	}

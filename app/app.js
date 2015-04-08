@@ -42,6 +42,9 @@ db.once('open', startServer)
 // Index page
 app.get('/', routes.index);
 
+/* Get categories */
+app.get('/categories', routes.categories);
+
 /* Get all products */
 app.get('/products', routes.products);
 

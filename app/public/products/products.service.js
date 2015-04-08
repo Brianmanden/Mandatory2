@@ -1,7 +1,8 @@
 (function(){
 	"use strict";
 
-	var ProductsService = function($http, CartService){
+	var ProductsService = function($http){
+		//, CartService
 
 		var categoriesSelected 	=	[],
 			products			=	[];
@@ -25,8 +26,7 @@
 		}
 
 		var getCategories = function(response){
-			// return $http.get("/categories")
-			return $http.get("../data/categories.json")
+			return $http.get("/categories")
 					.then(function(response){
 						return response.data;
 					}, getError)

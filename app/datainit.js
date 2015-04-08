@@ -13,25 +13,37 @@ var Product = mongoose.model("Product", {
 	category	: 	String
 });
 
+var Category = mongoose.model("Category", {
+	category 	:  	String 
+});
+
 
 // Connect Mongoose to MongoDB
 mongoose.connect('mongodb://localhost/' + dbname);
 var db = mongoose.connection;
 
 db.on('error', logError);
-db.once('open', deleteProducts);
+db.once('open', initCollections);
 
 function logError(){
 	console.log("Ohh noes ErRoR :)");
 }
 
-function deleteProducts(){
+function initCollections(){
 	console.log("Deleting products");
 	Product.remove({}, function(err){
 		if(err){
 			console.log(err);
 		}
 		insertProducts();
+	});
+
+	console.log("Deleting categories");
+	Category.remove({}, function(err){
+		if(err){
+			console.log(err);
+		}
+		insertCategories();
 	});
 }
 
@@ -45,7 +57,7 @@ function insertProducts(){
 			"prodPct": "5.7",
 			"prodVol": "50",
 			"prodPrice": 4,
-			"prodImg": "./app/img/AleNo16.png",
+			"prodImg": "AleNo16.png",
 			"category": "ale"
 		},
 		{
@@ -55,7 +67,7 @@ function insertProducts(){
 			"prodPct": "5.7",
 			"prodVol": "33",
 			"prodPrice": 7,
-			"prodImg": "./app/img/HarboeGuldøl.png",
+			"prodImg": "HarboeGuldøl.png",
 			"category": "lager"
 		},
 		{
@@ -65,7 +77,7 @@ function insertProducts(){
 			"prodPct": "5.6",
 			"prodVol": "33",
 			"prodPrice": 9,
-			"prodImg": "./app/img/guld_tuborg.png",
+			"prodImg": "guld_tuborg.png",
 			"category": "lager"
 		}
 		, function(err, data){
@@ -76,24 +88,19 @@ function insertProducts(){
 	);
 }
 
-
-/*		
-{
-	prodTitle	: 	"Goldie1",
-	prodDesc	: 	"fin guldøl", 
-	prodPct		: 	9.5,
-	prodVol		: 	33,
-	prodPrice	: 	8.37,
-	prodImg		: 	"bottle.jpg",
-	category	: 	"lager"
-},
-{
-	prodTitle	: 	"Goldie2",
-	prodDesc	: 	"fin guldøl", 
-	prodPct		: 	10.5,
-	prodVol		: 	50,
-	prodPrice	: 	13.37,
-	prodImg		: 	"bottle.jpg",
-	category	: 	"lager"
+function insertCategories(){
+	console.log("Inserting demo-categories");
+	Category.create(
+		{
+			"category": "ale"
+		},
+		{
+			"category": "lager"
+		}
+		, function(err, data){
+			if(err){
+				console.log(err);
+			}
+		}
+	);
 }
-*/

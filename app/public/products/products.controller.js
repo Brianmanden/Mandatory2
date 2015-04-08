@@ -15,8 +15,8 @@
 
 
 
-		$scope.ProductFilter = function(Product){
-			return ProductsService.ProductFilter(Product);
+		$scope.productFilter = function(product){
+			return ProductsService.productFilter(product);
 		}
 
 		$scope.categoryChange = function(category){

@@ -35,7 +35,4 @@
 			$rootScope.total = 0;
 		});
 
-		function MainController($rootScope, $http){
-		}
-
 })();

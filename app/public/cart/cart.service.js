@@ -23,7 +23,6 @@
 		}
 
 		var lessProd = function(item){
-			console.log("lessProd");
 			if($rootScope.cart[item.prodId]["amount"] > 1){
 				$rootScope.cart[item.prodId]["amount"] -= 1;
 				updateCartStatus();
@@ -62,9 +61,8 @@
 			}
 		}
 
-		var logOrder = function(orderObj){
-			console.log("tester");
-			//console.log(orderObj);
+		var saveOrder = function(orderObj){
+			console.log(orderObj);
 		}
 
 		return{
@@ -72,7 +70,7 @@
 			lessProd: lessProd,
 			moreProd: moreProd,
 			addToCart: addToCart,
-			logOrder: logOrder
+			saveOrder: saveOrder
 		}
 
 	}

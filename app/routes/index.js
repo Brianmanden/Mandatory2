@@ -4,15 +4,18 @@ exports.index = function(req, res){
   res.send(200);
 };
 
-/*
-exports.categories = function(){
-
+exports.categories = function(req, res, next){
+  var CategoriesModel = require('../public/data/categories');
+  CategoriesModel.find(function(err, data){
+    if(err){
+      console.error;
+    }
+    res.json(data);
+  })
 }
-*/
 
 exports.products = function(req, res, next){
   var ProductsModel = require('../public/data/products');
-  console.log('products');
   ProductsModel.find(function(err, data){
     if(err){
       console.error;
@@ -21,9 +24,13 @@ exports.products = function(req, res, next){
   });
 }
 
+exports.orderSave = function(req, res, next){
+  console.log("heps");
+}
+
 exports.productCreate = function(req, res, next){
   //res.render('./CRUDProd.ejs', { httpVerb: 'POST',  title: 'Create a new product', submitTxt: 'Create' });
-  res.send("productCreate ");
+  res.send("productCreate");
 }
 
 exports.productRead = function(req, res, next){
