@@ -1,7 +1,7 @@
 var mongoose		= require('mongoose'),
 	dbname 			= "angular_mongodb";
 
-// Schema
+// Schemas
 var Product = mongoose.model("Product", {
 	prodId		: 	Number, 
 	prodTitle	: 	String,
@@ -17,6 +17,11 @@ var Category = mongoose.model("Category", {
 	category 	:  	String 
 });
 
+var Order = mongoose.model("Order", {
+	orderCreated	:  	{ type: Date, default: Date.now },
+	customer 		: 	{}, 
+	order 			: 	{} 
+});
 
 // Connect Mongoose to MongoDB
 mongoose.connect('mongodb://localhost/' + dbname);
@@ -44,6 +49,14 @@ function initCollections(){
 			console.log(err);
 		}
 		insertCategories();
+	});
+
+	console.log("Deleting orders");
+	Order.remove({}, function(err){
+		if(err){
+			console.log(err);
+		}
+		insertOrders();
 	});
 }
 
@@ -96,6 +109,29 @@ function insertCategories(){
 		},
 		{
 			"category": "lager"
+		}
+		, function(err, data){
+			if(err){
+				console.log(err);
+			}
+		}
+	);
+}
+
+function insertOrders(){
+	console.log("Inserting demo-orders");
+	Order.create(
+		{
+			"customer": "some customer",
+			"order": "some products and quantity"
+		},
+		{
+			"customer": "some other customer",
+			"order": "some other products and quantity"
+		},
+		{
+			"customer": "yet another customer",
+			"order": "even more products and quantity"
 		}
 		, function(err, data){
 			if(err){

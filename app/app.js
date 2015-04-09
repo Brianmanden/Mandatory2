@@ -61,7 +61,7 @@ app.put('/product/:id', routes.productUpdate);
 // Delete a product
 app.delete('/product/:id', routes.productDelete);
 
-
+app.post('/order', routes.orderSave);
 
 /* Nodeserver */
 // Start server

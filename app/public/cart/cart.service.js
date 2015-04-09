@@ -1,7 +1,7 @@
 (function(){
 	"use strict";
 
-	var CartService = function($rootScope){
+	var CartService = function($rootScope, $http){
 
 		var addToCart = function(product, amount){		
 			if($rootScope.cart[product.prodId]){
@@ -62,8 +62,14 @@
 		}
 
 		var saveOrder = function(orderObj){
-			console.log(orderObj);
-		}
+			return $http.post('/order', orderObj)
+					.then(function(data, status, headers, config){
+					}, getError);
+		};
+
+		var getError = function(){
+			console.error;
+		};
 
 		return{
 			delProd: delProd,

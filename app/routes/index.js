@@ -25,7 +25,31 @@ exports.products = function(req, res, next){
 }
 
 exports.orderSave = function(req, res, next){
-  console.log("heps");
+  var OrdersModel = require('../public/data/orders');
+  // Insert sanity check on data here and/or on client side
+  var kurv = req.body.kurv;
+
+  // HERTIL
+  // bør flyttes til en service !
+
+  // build orderline
+  var completeOrder = [];
+  for(var item in kurv){
+    var product   = kurv[item];
+    var amount    = product["amount"];
+    var price     = product["product"]["prodPrice"];
+    var prodId    = product["prodId"];
+    var title     = product["product"]["prodTitle"];
+    var theProduct = { "prodId": prodId, "amount": amount, "price": price, "title": title };
+    completeOrder.push(theProduct);
+  }
+
+  OrdersModel.create({
+    "customer"    :   req.body.kunde,
+    "order"       :   completeOrder
+  });
+   
+  res.send("orderSave");
 }
 
 exports.productCreate = function(req, res, next){

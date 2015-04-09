@@ -21,6 +21,13 @@
 						templateUrl: "./checkout/checkout.html",
 						controller: "CartController"
 					})
+					.when("/order", {
+						templateUrl: "./views/tester.html"
+					})
+					.when("/prodCreate", {
+						//console.log("prodCreate")
+						templateUrl: "../admin/products/prodCreate.html"
+					})
 					.when("/", {
 						templateUrl: "./products/products.html",
 						controller: "ProductsController"
